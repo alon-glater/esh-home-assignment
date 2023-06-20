@@ -44,12 +44,11 @@ export const Header: React.FC = () => {
             </Typography>
             <Box sx={{ flexGrow: 1 }}>
               {pages.map((page) => (
-                <Button
-                  key={page.title}
-                  sx={{ my: 2, color: "rgba(0, 0, 0, 0.87)" }}
-                >
-                  <Link href={page.path}>{page.title}</Link>
-                </Button>
+                <Link key={page.title} href={page.path}>
+                  <Button sx={{ my: 2, color: "rgba(0, 0, 0, 0.87)" }}>
+                    {page.title}
+                  </Button>
+                </Link>
               ))}
             </Box>
           </Toolbar>

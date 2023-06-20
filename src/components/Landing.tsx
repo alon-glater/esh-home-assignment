@@ -26,9 +26,9 @@ export const Landing: React.FC = () => {
           <Typography textAlign="center" variant="h5">
             A new bank is coming
           </Typography>
-          <Button variant="contained">
-            <Link href="/blog">Read Latest Updates</Link>
-          </Button>
+          <Link href="/blog">
+            <Button variant="contained">Read Latest Updates</Button>
+          </Link>
         </Stack>
       </Stack>
     </Box>
