@@ -1,11 +1,12 @@
 "use client";
 import { Container, List, ListItem } from "@mui/material";
-import { Post } from "./Post";
+import { PostStub } from "./PostStub";
+import type { Post } from "../types";
 
-const posts = [
+const posts: Array<Post> = [
   {
     title: "Post 1",
-    subtitle:
+    content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     published: new Date(),
     imageUrl:
@@ -13,7 +14,7 @@ const posts = [
   },
   {
     title: "Post 2",
-    subtitle:
+    content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     published: new Date(),
     imageUrl:
@@ -21,7 +22,7 @@ const posts = [
   },
   {
     title: "Post 3",
-    subtitle:
+    content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     published: new Date(),
     imageUrl:
@@ -39,13 +40,7 @@ export const Posts: React.FC = () => {
             divider
             sx={{ justifyContent: index % 2 === 0 ? "start" : "end" }}
           >
-            <Post
-              title={post.title}
-              subtitle={post.subtitle}
-              published={post.published}
-              imageUrl={post.imageUrl}
-              align={index % 2 === 0 ? "left" : "right"}
-            />
+            <PostStub post={post} align={index % 2 === 0 ? "left" : "right"} />
           </ListItem>
         ))}
       </List>

@@ -1,20 +1,15 @@
 "use client";
 import { Box, Stack, Typography } from "@mui/material";
 import Image from "next/image";
+import type { Post } from "../types";
 
-type PostProps = {
-  title: string;
-  subtitle: string;
-  published: Date;
-  imageUrl: string;
+type PostStubProps = {
+  post: Post;
   align?: "left" | "right";
 };
 
-export const Post: React.FC<PostProps> = ({
-  title,
-  subtitle,
-  published,
-  imageUrl,
+export const PostStub: React.FC<PostStubProps> = ({
+  post: { title, content, published, imageUrl },
   align = "left",
 }) => {
   return (
@@ -37,7 +32,7 @@ export const Post: React.FC<PostProps> = ({
           {title}
         </Typography>
         <Typography align={align} sx={{ WebkitLineClamp: 3 }}>
-          {subtitle}
+          {content}
         </Typography>
       </Box>
     </Stack>
