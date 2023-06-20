@@ -1,5 +1,6 @@
 "use client";
 import { Box, Stack, Typography, Button } from "@mui/material";
+import Link from "next/link";
 
 export const Landing: React.FC = () => {
   return (
@@ -25,7 +26,9 @@ export const Landing: React.FC = () => {
           <Typography textAlign="center" variant="h5">
             A new bank is coming
           </Typography>
-          <Button variant="contained">Read Latest Updates</Button>
+          <Button variant="contained">
+            <Link href="/blog">Read Latest Updates</Link>
+          </Button>
         </Stack>
       </Stack>
     </Box>
