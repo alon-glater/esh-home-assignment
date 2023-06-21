@@ -1,19 +1,25 @@
 "use client";
-import { Box, Stack, Typography, Button } from "@mui/material";
+import { Stack, Typography, Button } from "@mui/material";
 import Link from "next/link";
+import { Footer } from "./Footer";
 
 export const Landing: React.FC = () => {
   return (
-    <Box
+    <Stack
       sx={{
-        position: "absolute",
-        top: "50%",
-        left: "50%",
-        transform: "translate(-50%, -50%)",
+        height: "100%",
+        width: "100%",
         color: "white",
+        background: "black",
       }}
     >
-      <Stack alignItems="center" gap="4rem">
+      <Stack
+        justifyContent="center"
+        alignItems="center"
+        gap="4rem"
+        flexGrow={1}
+        zIndex={1}
+      >
         <Typography
           variant="h1"
           sx={{
@@ -31,6 +37,7 @@ export const Landing: React.FC = () => {
           </Link>
         </Stack>
       </Stack>
-    </Box>
+      <Footer invertColors />
+    </Stack>
   );
 };
