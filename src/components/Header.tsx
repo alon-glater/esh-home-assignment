@@ -25,7 +25,7 @@ export const Header: React.FC = () => {
   return (
     <>
       <CssBaseline />
-      <AppBar component="nav">
+      <AppBar component="nav" position="sticky">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
             <Typography
@@ -54,7 +54,6 @@ export const Header: React.FC = () => {
           </Toolbar>
         </Container>
       </AppBar>
-      <Toolbar />
     </>
   );
 };
