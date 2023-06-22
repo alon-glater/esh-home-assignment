@@ -60,21 +60,21 @@ export const Header: React.FC = () => {
       <AppBar component="nav" position="sticky">
         <Container maxWidth="xl">
           <Toolbar disableGutters>
-            <Typography
-              variant="h6"
-              noWrap
-              component="a"
-              href="/"
-              sx={{
-                mr: 2,
-                fontWeight: 700,
-                letterSpacing: "0.2rem",
-                textDecoration: "none",
-                direction: "ltr",
-              }}
-            >
-              esh.
-            </Typography>
+            <Link href="/">
+              <Typography
+                variant="h6"
+                noWrap
+                sx={{
+                  mr: 2,
+                  fontWeight: 700,
+                  letterSpacing: "0.2rem",
+                  textDecoration: "none",
+                  direction: "ltr",
+                }}
+              >
+                esh.
+              </Typography>
+            </Link>
             <Box sx={{ flexGrow: 1 }}>
               {pages(selectedLanguage).map((page) => (
                 <Link key={page.title} href={page.path}>
