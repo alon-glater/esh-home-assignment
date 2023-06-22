@@ -7,8 +7,15 @@ import {
   Typography,
   Box,
   Button,
+  IconButton,
+  Menu,
+  MenuItem,
 } from "@mui/material";
+import LanguageIcon from "@mui/icons-material/Language";
 import Link from "next/link";
+import { MouseEvent, useState } from "react";
+import { useLanguageContext } from "@/context/language";
+import type { Language } from "../types";
 
 const pages = [
   {
@@ -22,6 +29,28 @@ const pages = [
 ];
 
 export const Header: React.FC = () => {
+  const {
+    languages,
+    language: selectedLanguage,
+    setLanguage,
+  } = useLanguageContext();
+  const [languagesElement, setLanguagesElement] = useState<HTMLElement | null>(
+    null
+  );
+
+  const openLanguagesMenu = (event: MouseEvent<HTMLElement>) => {
+    setLanguagesElement(event.currentTarget);
+  };
+
+  const closeLanguagesMenu = () => {
+    setLanguagesElement(null);
+  };
+
+  const selectLanguage = (language: Language) => {
+    setLanguage(language);
+    closeLanguagesMenu();
+  };
+
   return (
     <>
       <CssBaseline />
@@ -51,6 +80,25 @@ export const Header: React.FC = () => {
                 </Link>
               ))}
             </Box>
+            <IconButton onClick={openLanguagesMenu} aria-label="language">
+              <LanguageIcon />
+            </IconButton>
+            <Menu
+              anchorEl={languagesElement}
+              open={!!languagesElement}
+              onClose={closeLanguagesMenu}
+              aria-label="languages-menu"
+            >
+              {languages.map((language) => (
+                <MenuItem
+                  key={language.value}
+                  onClick={() => selectLanguage(language)}
+                  disabled={language === selectedLanguage}
+                >
+                  <Typography>{language.display}</Typography>
+                </MenuItem>
+              ))}
+            </Menu>
           </Toolbar>
         </Container>
       </AppBar>
