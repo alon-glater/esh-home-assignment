@@ -2,9 +2,10 @@
 
 ## How to Run
 
-Simply run the following command:
+After cloning (or downloading) the code, simply run the following commands:
 
 ```
+npm install
 npm run dev
 ```
 
