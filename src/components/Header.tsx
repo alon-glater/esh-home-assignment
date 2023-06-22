@@ -7,14 +7,10 @@ import {
   Typography,
   Box,
   Button,
-  IconButton,
-  Menu,
-  MenuItem,
 } from "@mui/material";
-import LanguageIcon from "@mui/icons-material/Language";
 import Link from "next/link";
-import { MouseEvent, useCallback, useState } from "react";
 import { useLanguageContext } from "@/context/language";
+import { LanguagesMenu } from "./LanguagesMenu";
 import type { Language } from "../types";
 
 const pages = (language: Language) => [
@@ -29,30 +25,7 @@ const pages = (language: Language) => [
 ];
 
 export const Header: React.FC = () => {
-  const {
-    languages,
-    language: selectedLanguage,
-    setLanguage,
-  } = useLanguageContext();
-  const [languagesElement, setLanguagesElement] = useState<HTMLElement | null>(
-    null
-  );
-
-  const openLanguagesMenu = (event: MouseEvent<HTMLElement>) => {
-    setLanguagesElement(event.currentTarget);
-  };
-
-  const closeLanguagesMenu = useCallback(() => {
-    setLanguagesElement(null);
-  }, []);
-
-  const selectLanguage = useCallback(
-    (language: Language) => {
-      setLanguage(language);
-      closeLanguagesMenu();
-    },
-    [closeLanguagesMenu, setLanguage]
-  );
+  const { language } = useLanguageContext();
 
   return (
     <>
@@ -76,7 +49,7 @@ export const Header: React.FC = () => {
               </Typography>
             </Link>
             <Box sx={{ flexGrow: 1 }}>
-              {pages(selectedLanguage).map((page) => (
+              {pages(language).map((page) => (
                 <Link key={page.title} href={page.path}>
                   <Button sx={{ my: 2, color: "rgba(0, 0, 0, 0.87)" }}>
                     {page.title}
@@ -84,25 +57,8 @@ export const Header: React.FC = () => {
                 </Link>
               ))}
             </Box>
-            <IconButton onClick={openLanguagesMenu} aria-label="language">
-              <LanguageIcon />
-            </IconButton>
-            <Menu
-              anchorEl={languagesElement}
-              open={!!languagesElement}
-              onClose={closeLanguagesMenu}
-              aria-label="languages-menu"
-            >
-              {languages.map((language) => (
-                <MenuItem
-                  key={language.value}
-                  onClick={() => selectLanguage(language)}
-                  disabled={language === selectedLanguage}
-                >
-                  <Typography>{language.display}</Typography>
-                </MenuItem>
-              ))}
-            </Menu>
+
+            <LanguagesMenu />
           </Toolbar>
         </Container>
       </AppBar>
