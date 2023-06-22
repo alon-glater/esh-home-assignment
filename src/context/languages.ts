@@ -17,6 +17,7 @@ export const languages: Array<Language> = [
   {
     display: "עברית",
     value: "he",
+    rtl: true,
     appBarHomeButtonText: "בית",
     appBarBlogButtonText: "בלוג",
     privacyPolicyLinkText: "מדיניות פרטיות",

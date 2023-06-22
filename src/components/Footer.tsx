@@ -1,11 +1,14 @@
 "use client";
 import { Container, Divider, Stack, Typography } from "@mui/material";
+import { useLanguageContext } from "@/context/language";
 
 type FooterProps = {
   invertColors?: boolean;
 };
 
 export const Footer: React.FC<FooterProps> = ({ invertColors = false }) => {
+  const { language } = useLanguageContext();
+
   return (
     <Container
       maxWidth="lg"
@@ -19,8 +22,12 @@ export const Footer: React.FC<FooterProps> = ({ invertColors = false }) => {
             ...(invertColors ? { borderColor: "white" } : {}),
           }}
         />
-        <Typography variant="caption">Privacy Policy</Typography>
-        <Typography variant="caption">Accessibiliy Statement</Typography>
+        <Typography variant="caption">
+          {language.privacyPolicyLinkText}
+        </Typography>
+        <Typography variant="caption">
+          {language.accessibilityStatementLinkText}
+        </Typography>
       </Stack>
     </Container>
   );

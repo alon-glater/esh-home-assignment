@@ -11,6 +11,7 @@ export default function Home() {
         style={{
           filter: "brightness(34%)",
         }}
+        sizes="100vw"
       />
       <Landing />
     </main>

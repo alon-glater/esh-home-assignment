@@ -7,7 +7,11 @@ import type { Post } from "../types";
 export function fetchPost(id: string): Promise<Post | undefined> {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(posts.find((post) => post.id === id));
+      resolve(
+        Array.from(posts.values())
+          .flatMap((post) => post)
+          .find((post) => post.id === id)
+      );
     }, 500);
   });
 }

@@ -13,17 +13,17 @@ import {
 } from "@mui/material";
 import LanguageIcon from "@mui/icons-material/Language";
 import Link from "next/link";
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useCallback, useState } from "react";
 import { useLanguageContext } from "@/context/language";
 import type { Language } from "../types";
 
-const pages = [
+const pages = (language: Language) => [
   {
-    title: "Home",
+    title: language.appBarHomeButtonText,
     path: "/",
   },
   {
-    title: "Blog",
+    title: language.appBarBlogButtonText,
     path: "/blog",
   },
 ];
@@ -42,14 +42,17 @@ export const Header: React.FC = () => {
     setLanguagesElement(event.currentTarget);
   };
 
-  const closeLanguagesMenu = () => {
+  const closeLanguagesMenu = useCallback(() => {
     setLanguagesElement(null);
-  };
+  }, []);
 
-  const selectLanguage = (language: Language) => {
-    setLanguage(language);
-    closeLanguagesMenu();
-  };
+  const selectLanguage = useCallback(
+    (language: Language) => {
+      setLanguage(language);
+      closeLanguagesMenu();
+    },
+    [closeLanguagesMenu, setLanguage]
+  );
 
   return (
     <>
@@ -67,12 +70,13 @@ export const Header: React.FC = () => {
                 fontWeight: 700,
                 letterSpacing: "0.2rem",
                 textDecoration: "none",
+                direction: "ltr",
               }}
             >
               esh.
             </Typography>
             <Box sx={{ flexGrow: 1 }}>
-              {pages.map((page) => (
+              {pages(selectedLanguage).map((page) => (
                 <Link key={page.title} href={page.path}>
                   <Button sx={{ my: 2, color: "rgba(0, 0, 0, 0.87)" }}>
                     {page.title}

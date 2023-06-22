@@ -9,6 +9,7 @@ export type Post = {
 export type Language = {
   display: string;
   value: "en" | "he";
+  rtl?: boolean;
   appBarHomeButtonText: string;
   appBarBlogButtonText: string;
   privacyPolicyLinkText: string;

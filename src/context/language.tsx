@@ -19,10 +19,18 @@ const initialLanguageState: LanguageState = {
 const LanguageContext = createContext<LanguageState>(initialLanguageState);
 
 export const LanguageProvider: React.FC<PropsWithChildren> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>(languages[0]);
+  const [language, setLanguage] = useState<Language>(
+    initialLanguageState.language
+  );
 
   return (
-    <LanguageContext.Provider value={{ languages, language, setLanguage }}>
+    <LanguageContext.Provider
+      value={{
+        languages,
+        language,
+        setLanguage,
+      }}
+    >
       {children}
     </LanguageContext.Provider>
   );

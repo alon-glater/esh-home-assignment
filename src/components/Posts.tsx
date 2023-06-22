@@ -1,18 +1,24 @@
 "use client";
+import { useState, useEffect } from "react";
 import { Container, List, ListItem } from "@mui/material";
 import { PostStub } from "./PostStub";
-import type { Post } from "../types";
 import Link from "next/link";
+import { useLanguageContext } from "@/context/language";
+import { fetchPosts } from "@/services/fetchPosts";
+import type { Post } from "@/types";
 
-type PostsProps = {
-  posts: Array<Post>;
-};
+export const Posts: React.FC = () => {
+  const [languagePosts, setLanguagePosts] = useState<Array<Post>>([]);
+  const { language } = useLanguageContext();
 
-export const Posts: React.FC<PostsProps> = ({ posts }) => {
+  useEffect(() => {
+    fetchPosts(language.value).then((posts) => setLanguagePosts(posts));
+  }, [language]);
+
   return (
     <Container maxWidth="md">
       <List>
-        {posts.map((post, index) => (
+        {languagePosts.map((post, index) => (
           <ListItem
             key={post.title}
             divider

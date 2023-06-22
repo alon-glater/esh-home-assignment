@@ -24,6 +24,7 @@ export const PostStub: React.FC<PostStubProps> = ({
           alt={title}
           fill
           style={{ objectFit: "contain" }}
+          sizes="100vw"
         />
       </Box>
       <Box>
